@@ -33,6 +33,7 @@
     display: grid;
     grid-template-columns: repeat(2,50%);
     overflow: hidden;
+    
                 
 
 h1{

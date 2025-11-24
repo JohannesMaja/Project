@@ -31,7 +31,6 @@ let picture = "https://picsum.photos/id/93/367/267"
         flex:1;
         margin: 10px;
         height: 100%;
-
         transition: all 1s;
 
     }
