@@ -11,6 +11,8 @@
 	<a href="{base}/Photoapp">photoapp</a>
 
 	<a href="{base}/Register">register</a>
+	
+	<a href="{base}/Shoppinglist">shoppinglist</a>
 </nav>
 
 
