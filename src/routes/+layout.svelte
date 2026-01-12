@@ -13,6 +13,10 @@
 	<a href="{base}/Register">register</a>
 	
 	<a href="{base}/Shoppinglist">shoppinglist</a>
+	
+	<a href="{base}/Memory">memory</a>
+
+	<a href="{base}/Prov">prov</a>
 </nav>
 
 

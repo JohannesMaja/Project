@@ -6,7 +6,7 @@ let items = [];
 		const name = newItem.trim();
 
 		if (name === "") {
-			alert("Skriv en vara");
+			alert("Skriv in en vara");
 			return;
 		}
 
@@ -44,10 +44,10 @@ let items = [];
 <input
 		type="text"
 		bind:value={newItem}
-		placeholder="Köp en vara..."
+		placeholder="Skriv in en vara..."
 	/>
 
-	<button on:click={addItem}>Lägg till</button>
+	<button on:click={addItem}>Lägg till i shoppinglistan</button>
 
 	<h2 class=second_header>Varor att köpa</h2>
 	<ul>
