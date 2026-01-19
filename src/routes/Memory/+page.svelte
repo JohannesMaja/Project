@@ -72,7 +72,7 @@ function flip(card) {
       }
       flippedCards = [];
       isChecking = false;
-      
+
 
     } else {
       setTimeout(() => {

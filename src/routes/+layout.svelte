@@ -6,17 +6,19 @@
 </script>
 
 <nav>
-	<a href="{base}/">hem</a>
+	<a href="{base}/">Hem</a>
 
-	<a href="{base}/Photoapp">photoapp</a>
+	<a href="{base}/Photoapp">Photoapp</a>
 
-	<a href="{base}/Register">register</a>
+	<a href="{base}/Register">Register</a>
 	
-	<a href="{base}/Shoppinglist">shoppinglist</a>
+	<a href="{base}/Shoppinglist">Shoppinglist</a>
 	
-	<a href="{base}/Memory">memory</a>
+	<a href="{base}/Memory">Memory</a>
 
-	<a href="{base}/Prov">prov</a>
+	<a href="{base}/Prov">Prov</a>
+
+	<a href="{base}/Chat">Chat</a>
 </nav>
 
 
