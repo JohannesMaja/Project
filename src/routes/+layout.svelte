@@ -19,6 +19,8 @@
 	<a href="{base}/Prov">Prov</a>
 
 	<a href="{base}/Chat">Chat</a>
+
+	<a href="{base}/search">Search</a>
 </nav>
 
 
@@ -35,5 +37,6 @@
   height: 100vh;
   width: 100vw;
 }    
+
 
 </style>
