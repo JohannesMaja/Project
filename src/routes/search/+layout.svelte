@@ -40,7 +40,7 @@
 <footer>
   {#each $recentSearches as p}
 <button
-  on:click={() => goto(base+`/search/${p.name}`)}
+  on:click={() => goto(`/Project/search/${p.name}`)}
   class="pokemon-link {p.types[0]}"
 >
   {p.name}
