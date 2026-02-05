@@ -2,6 +2,8 @@
   import { recentSearches } from '$lib/stores/recentSearches';
   // Importera goto-funktionen för att navigera mellan sidor
   import { goto } from '$app/navigation';
+  	import { base } from '$app/paths';
+
   // Funktion som hanterar formulärets submit-händelse
   function handleSubmit(e) {
     // Förhindra att sidan laddas om (standardbeteende för formulär)
@@ -38,7 +40,7 @@
 <footer>
   {#each $recentSearches as p}
 <button
-  on:click={() => goto(`/search/${p.name}`)}
+  on:click={() => goto(base+`/search/${p.name}`)}
   class="pokemon-link {p.types[0]}"
 >
   {p.name}
