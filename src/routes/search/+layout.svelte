@@ -20,7 +20,7 @@
     if (!search) return;
 
     // Navigera till den dynamiska routen /search/[pokemon]
-    goto(base +'/search/' + search);
+    goto('/search/' + search);
   }
 
 </script>
@@ -38,7 +38,7 @@
 <footer>
   {#each $recentSearches as p}
 <button
-  on:click={() => goto(`/search/${p.name}`)}
+  on:click={() => goto(base +`/search/${p.name}`)}
   class="pokemon-link {p.types[0]}"
 >
   {p.name}
