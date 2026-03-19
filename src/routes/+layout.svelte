@@ -21,6 +21,12 @@
 	<a href="{base}/Chat">Chat</a>
 
 	<a href="{base}/search">Search</a>
+
+	<a href="{base}/Födelsedag">Födelsedag</a>
+
+	<a href="{base}/Skidskytte">Skidskytte</a>
+
+	<a href="{base}/MarketPoly">MarketPoly</a>
 </nav>
 
 

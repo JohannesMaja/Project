@@ -1,55 +1,60 @@
 <script>
-const boxes = ["1","2","3","4","5","6"];
-const colors = [ 
-    '#ff0000', 
-    '#0000ff',
-    '#008000',
-    '#008000',
-    '#800080',
-    '#ffa500'  
-]
+  let query = $state("");
+  let results = $state([]);
+  let timer;
+
+  function searchCompany() {
+    clearTimeout(timer);
+    timer = setTimeout(fetchSearch, 300);
+  }
+
+  async function fetchSearch() {
+    if (query.length < 2) {
+      results = [];
+      return;
+    }
+
+    const res = await fetch(`/api/search?q=${query}`);
+    results = await res.json();
+  }
 </script>
 
-<h1> C Prov </h1>
+<h1>Stock Search</h1>
 
-<div class=container> 
-    {#each boxes as b, i}
-    <div class=box style="background:{colors[i]}">{b}</div>
-    {/each}
-</div>
+<input
+  id="company-search"
+  name="company-search"
+  type="text"
+  placeholder="Search company..."
+  bind:value={query}
+  oninput={searchCompany}
+/>
+
+{#if results.length > 0}
+<ul>
+  {#each results as company}
+    <li>
+      {company.shortname || company.longname} — {company.symbol} ({company.exchange})
+    </li>
+  {/each}
+</ul>
+{/if}
 
 <style>
-    .container{
-        display: grid;
-        grid-template-columns: repeat(3,250px);
-        grid-template-rows: repeat(2, 200px);
-        background-color: lightgray;
-        justify-self: center;
-        gap: 10px;
-        padding: 10px;
-        border-radius: 10px;
-    
-    
-    }
-    .box{
-        display: flex;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        color:white;
-        transition: transform 1s;
-        border-radius: 10px;
-        
-    }
-    .box:hover{
-        transform: scale(0.9);
-    }
+  input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+  }
 
+  ul {
+    list-style: none;
+    padding: 0;
+    width: 300px;
+  }
 
-
-
-
-
-
+  li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
 </style>
