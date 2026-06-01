@@ -18,7 +18,6 @@ function animate() {
     direction *= -1;
   }
 
-  requestAnimationFrame(animate);
 }
 animate();
 function handleShot(e) {
