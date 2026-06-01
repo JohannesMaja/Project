@@ -5,8 +5,10 @@
 	import { base } from '$app/paths';
 </script>
 
+<!-- This is a comment 
 <nav>
-	<a href="{base}/">Hem</a>
+	<a href="{base}/">SwimSearch</a>
+
 
 	<a href="{base}/Photoapp">Photoapp</a>
 
@@ -27,7 +29,9 @@
 	<a href="{base}/Skidskytte">Skidskytte</a>
 
 	<a href="{base}/MarketPoly">MarketPoly</a>
-</nav>
+
+	
+</nav>-->
 
 
 <svelte:head>
