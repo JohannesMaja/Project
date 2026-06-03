@@ -4,13 +4,11 @@
 
   let chartCanvas;
   let chart;
-
   let selectedSwimmerId = data.swimmers[0]?.id;
-
   let selectedEventId = null;
   let selectedCourse = null;
-
   let sameDayMode = "best";
+  let detailsSection;
 
 
   $: selectedSwimmer = data.swimmers.find(
@@ -33,16 +31,21 @@
     }, {})
   ).sort((a, b) => a.time - b.time);
 
-  $: eventResults = data.results
-    .filter(
-      (r) =>
-        r.swimmerId === selectedSwimmerId &&
-        r.eventId === selectedEventId &&
-        r.course === selectedCourse
-    )
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
+ $: eventResults = data.results
+  .filter(
+    (r) =>
+      r.swimmerId === selectedSwimmerId &&
+      r.eventId === selectedEventId &&
+      r.course === selectedCourse
+  );
 
-  $: processedResults = processResults(eventResults);
+$: chartResults = [...eventResults]
+  .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+$: tableResults = [...eventResults]
+  .sort((a, b) => a.time - b.time);
+
+$: processedResults = processResults(chartResults);
 
   $: if (chartCanvas && processedResults.length > 0) {
     updateChart();
@@ -79,6 +82,13 @@
   function selectEvent(eventId, course) {
     selectedEventId = eventId;
     selectedCourse = course;
+
+      setTimeout(() => {
+    detailsSection?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 50);
   }
 
   function processResults(results) {
@@ -191,7 +201,7 @@
                   result.course
                 )
               )}
-              Aqua Points
+              Aqua Poäng
             {/if}
           </button>
         </li>
@@ -201,7 +211,8 @@
 
 
   {#if selectedEventId}
-    <section class="details">
+    <section class="details" 
+    bind:this={detailsSection}>
       <h3>
         Alla resultat –
         {getEvent(selectedEventId).distance}m
@@ -222,7 +233,7 @@
       <canvas bind:this={chartCanvas}></canvas>
 
       <ul>
-        {#each processedResults as r}
+        {#each tableResults as r}
           <li>
             {r.date}
             – {formatTime(r.time)}
@@ -234,32 +245,137 @@
 </main>
 
 <style>
-  main {
-    padding-left: 15px;
-    width: 100%;
-    height: 225%;
-    background-color: aqua;
-  }
+:global(body) {
+  margin: 0;
+  background: rgb(150, 255, 255);
+  font-family: Arial;
+}
 
-  button:hover {
-    color: #0077cc;
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 
-  }
 
-  button {
+}
+
+h1 {
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: #334155;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  color: #334155;
+}
+
+select {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  background: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.75rem;
+}
+
+button {
   all: unset;
   cursor: pointer;
   display: block;
-  width: 40%;
-  }
-  .selected{
-    font-weight: bold;
-  }
-  canvas {
-  width: 1000px;
-  height: 400px; 
-  }
-  section{
-    background-color: aqua;
-  }
+  width: 100%;
+  padding: 1rem;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.selected {
+  background: #e0f2fe;
+  border: 2px solid #0ea5e9;
+}
+
+.details {
+  margin-top: 2rem;
+
+  padding: 1.5rem;
+
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  
+  scroll-margin-top: 20px;
+}
+
+.close {
+  width: auto;
+
+  display: inline-block;
+
+  padding: 0.75rem 1.25rem;
+
+  margin-bottom: 1rem;
+
+  background: #ef4444;
+
+  color: white;
+
+  border-radius: 8px;
+}
+
+.close:hover {
+  background: #dc2626;
+}
+
+canvas {
+  width: 100% !important;
+  max-width: 1000px;
+  height: 450px !important;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.details ul {
+  margin-top: 1rem;
+}
+
+.details li {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.details li:hover {
+  background: #f8fafc;
+}
 </style>
